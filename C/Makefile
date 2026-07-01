@@ -22,7 +22,7 @@ $(Sully): $(Sully_src)
 all: $(Colleen) $(Grace)
 
 clean:
-	rm -f $(Colleen) $(Grace) Sully_5.c Sully_4.c Sully_3.c Sully_2.c
+	rm -f $(Colleen) $(Grace) $(Sully) Sully_5.c Sully_4.c Sully_3.c Sully_2.c Sully_1.c Sully
 
 fclean: clean
 
