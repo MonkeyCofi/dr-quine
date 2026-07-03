@@ -28,7 +28,7 @@ $(Sully): $(Sully_src)
 
 
 clean:
-	rm -f Grace_kid.s $(OBJS) Sully_*.o
+	rm -f Grace_kid.s $(OBJS) Sully_*.o Sully.o Sully_* $(Sully)
 
 fclean: clean
 	rm -f $(Colleen) $(Grace)
