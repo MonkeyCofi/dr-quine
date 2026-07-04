@@ -22,10 +22,16 @@ $(Sully): $(Sully_src)
 	gcc -Wall -Wextra -Werror $^ -o $@
 
 clean:
-	rm -f $(Colleen) $(Grace) Sully_5.c Sully_4.c Sully_3.c Sully_2.c Sully_1.c Grace_kid.c
+	rm -f $(Colleen) $(Grace) Grace_kid.c
+	@for i in $(shell seq 1 5); do \
+		rm -f Sully_$$i.c; \
+	done
 
 fclean: clean
-	rm -f $(Sully) Sully_5 Sully_4 Sully_3 Sully_2 Sully_1
+	rm -f $(Sully) $(Grace) $(Colleen)
+	@for i in $(shell seq 1 5); do \
+		rm -f Sully_$$i; \
+	done
 
 re: fclean all
 
