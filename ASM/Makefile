@@ -29,13 +29,13 @@ $(Sully): $(Sully_src)
 
 clean:
 	rm -f Grace_kid.s $(OBJS) Sully.o
-	@for i in $(shell seq 1 5); do \
+	@for i in $(shell seq 0 5); do \
 		rm -f Sully_$$i.o; \
 	done
 
 fclean: clean
 	rm -f $(Colleen) $(Grace) $(Sully)
-	@for i in $(shell seq 1 5); do \
+	@for i in $(shell seq 0 5); do \
 		rm -f Sully_$$i Sully_$$i.s; \
 	done
 

@@ -23,13 +23,13 @@ $(Sully): $(Sully_src)
 
 clean:
 	rm -f $(Colleen) $(Grace) Grace_kid.c
-	@for i in $(shell seq 1 5); do \
+	@for i in $(shell seq 0 5); do \
 		rm -f Sully_$$i.c; \
 	done
 
 fclean: clean
 	rm -f $(Sully) $(Grace) $(Colleen)
-	@for i in $(shell seq 1 5); do \
+	@for i in $(shell seq 0 5); do \
 		rm -f Sully_$$i; \
 	done
 
