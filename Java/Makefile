@@ -1,22 +1,35 @@
 JAVAC = javac
 
-Colleen = Colleen.class
+Colleen = Colleen
 
-Grace = Grace.class
+Grace = Grace
 
-Colleen_src = Colleen.java
+Sully = Sully
 
-Grace_src = Grace.java
+JFLAGS = -g -Xlint:all
 
-$(Colleen): $(Colleen_src)
-	$(JAVAC) $^
+SRCS = Colleen.java Grace.java Sully.java
 
-$(Grace): $(Grace_src)
-	$(JAVAC) $^
+BIN = $(SRCS:.java=.class)
+
+all: $(Colleen) $(Grace) $(Sully)
+
+$(Colleen): Colleen.java
+	$(JAVAC) $(JFLAGS) $<
+
+$(Grace): Grace.java
+	$(JAVAC) $(JFLAGS) $<
+
+$(Sully): Sully.java
+	$(JAVAC) $(JFLAGS) $<
 
 clean:
+	@for i in $(shell seq 0 5); do \
+		rm -rf Sully_$$i.java; \
+	done
 
-fclean:
-	rm -rf $(Colleen) $(Grace) $(Sully)
+fclean: clean
+	rm -rf Grace_kid.java
+	rm -rf $(BIN)
 
 re:
