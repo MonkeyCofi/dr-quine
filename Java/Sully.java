@@ -2,20 +2,19 @@ public class Sully {
     public static void main(String[] args) {
         int i = 5;
         if (i < 0) return;
-        String code = "public class Sully {%n    public static void main(String[] args) {%n        int i = %1$d;%n        if (i < 0) return;%n        String code = %2$c%3$s%2$c;%n        String filename = String.format(%2$cSully_%%d.java%2$c, i--);%n        try (java.io.PrintWriter out = new java.io.PrintWriter(filename)) {%n            out.printf(code, i, 34, code);%n        } catch (java.io.IOException e) {%n            return;%n        }%n        String execFile = String.format(%2$cSully_%%d%2$c, i + 1);%n        String cmd1 = String.format(%2$cjavac %%s%2$c, filename);%n        String cmd2 = String.format(%2$cjava %%s%2$c, execFile);%n        try {%n            new ProcessBuilder(cmd1.split(%2$c %2$c)).start().waitFor();%n            new ProcessBuilder(cmd2.split(%2$c %2$c)).start();%n        } catch (Exception e) {%n            return;%n        }%n    }%n}";
-        String filename = String.format("Sully_%d.java", i--);
+        int fileNum = i;
+        String filename = String.format("Sully_%d.java", fileNum);
+        i--;
+        String code = "public class Sully_%1$d {%n    public static void main(String[] args) {%n        int i = %2$d;%n        if (i < 0) return;%n        int fileNum = i;%n        String filename = String.format(%3$cSully_%%d.java%3$c, fileNum);%n        i--;%n        String code = %3$c%4$s%3$c;%n        try (java.io.PrintWriter out = new java.io.PrintWriter(filename)) {%n            out.printf(code, fileNum, i, 34, code);%n        } catch (java.io.IOException e) {%n            return;%n        }%n        String execFile = String.format(%3$cSully_%%d%3$c, fileNum);%n        try {%n            new ProcessBuilder(%3$cjavac%3$c, filename).start().waitFor();%n            new ProcessBuilder(%3$cjava%3$c, execFile).start();%n        } catch (Exception e) {%n            return;%n        }%n    }%n}";
         try (java.io.PrintWriter out = new java.io.PrintWriter(filename)) {
-            out.printf(code, i, 34, code);
+            out.printf(code, fileNum, i, 34, code);
         } catch (java.io.IOException e) {
             return;
         }
-        String execFile = String.format("Sully_%d", i + 1);
-        String cmd1 = String.format("javac %s", filename);
-        String cmd2 = String.format("java %s", execFile);
-        System.out
+        String execFile = String.format("Sully_%d", fileNum);
         try {
-            new ProcessBuilder(cmd1.split(" ")).start().waitFor();
-            new ProcessBuilder(cmd2.split(" ")).start();
+            new ProcessBuilder("javac", filename).start().waitFor();
+            new ProcessBuilder("java", execFile).start();
         } catch (Exception e) {
             return;
         }

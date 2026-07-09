@@ -29,7 +29,10 @@ clean:
 	done
 
 fclean: clean
+	@for i in $(shell seq 0 5); do \
+		rm -f Sully_$$i.class; \
+	done
 	rm -rf Grace_kid.java
 	rm -rf $(BIN)
 
-re:
+re: all
