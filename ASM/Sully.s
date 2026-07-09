@@ -1,12 +1,12 @@
 default rel
-%define C "default rel%1$c%%define C %3$c%4$s%3$c%1$c%1$csection .data%1$c%2$csrc db C, 0%1$c%2$csrc_file db %3$cSully_%%d.s%3$c, 0%1$c%2$cfilename db %3$cSully_%%d%3$c, 0%1$c%2$cmode db %3$cw+%3$c, 0%1$c%2$cexec db %3$cnasm -f elf64 Sully_%%1$d.s && gcc -no-pie Sully_%%1$d.o -o Sully_%%1$d && ./Sully_%%d%3$c%1$c%1$csection .bss%1$c%2$cbuffer resb 64%1$c%2$cfile_ptr resq 1%1$c%1$csection .text%1$c%2$cglobal main%1$c%2$cextern sprintf%1$c%2$cextern fprintf%1$c%2$cextern fopen%1$c%2$cextern fclose%1$c%2$cextern system%1$c%2$cextern printf%1$c%1$cmain:%1$c%2$cxor rax, rax%1$c%2$cmov rax, %5$d%1$c%2$ctest rax, rax%1$c%2$cjs .done%1$c%2$cpush rax%1$c%2$clea rdi, [buffer]%1$c%2$clea rsi, [src_file]%1$c%2$cmov rdx, rax%1$c%2$ccall sprintf%1$c%2$cpop rax%1$c%1$c%2$clea rdi, [buffer]%1$c%2$clea rsi, [mode]%1$c%2$cpush rax%1$c%2$ccall fopen%1$c%2$ctest rax, rax%1$c%2$cjz .error%1$c%2$cmov [file_ptr], rax%1$c%2$cpop rax%1$c%1$c%2$cxor rdi, rdi%1$c%2$cmov rdi, rax%1$c%2$cdec rdi%1$c%2$cpush qword rdi%1$c%2$cmov rdi, [file_ptr]%1$c%2$cmov rsi, src%1$c%2$cmov rdx, 10%1$c%2$cmov rcx, 9%1$c%2$cmov r8, 34%1$c%2$cmov r9, src%1$c%2$ccall fprintf%1$c%2$cpop rax%1$c%2$cinc rax%1$c%1$c%2$cpush rax%1$c%2$cmov rdi, [file_ptr]%1$c%2$ccall fclose%1$c%2$cpop rax%1$c%1$c%2$clea rdi, [buffer]%1$c%2$clea rsi, [exec]%1$c%2$cmov rdx, rax%1$c%2$cpush rax%1$c%2$ccall sprintf%1$c%2$cpop rax%1$c%1$c%2$clea rdi, [buffer]%1$c%2$cpush rax%1$c%2$ccall system%1$c%2$cpop rax%1$c%2$cret%1$c%1$c.error:%1$c%2$cmov rax, 1%1$c%2$cret%1$c%1$c.done:%1$c%2$cmov rax, 0%1$c%2$cret"
+%define C "default rel%1$c%%define C %3$c%4$s%3$c%1$c%1$csection .data%1$c%2$csrc db C, 0%1$c%2$csrc_file db %3$cSully_%%d.s%3$c, 0%1$c%2$cfilename db %3$cSully_%%d%3$c, 0%1$c%2$cmode db %3$cw+%3$c, 0%1$c%2$cexec db %3$cnasm -f elf64 Sully_%%1$d.s && gcc -no-pie Sully_%%1$d.o -o Sully_%%1$d && rm -f Sully_%%1$d.o && ./Sully_%%d%3$c%1$c%1$csection .bss%1$c%2$cbuffer resb 64%1$c%2$cfile_ptr resq 1%1$c%1$csection .text%1$c%2$cglobal main%1$c%2$cextern sprintf%1$c%2$cextern fprintf%1$c%2$cextern fopen%1$c%2$cextern fclose%1$c%2$cextern system%1$c%2$cextern printf%1$c%1$cmain:%1$c%2$cxor rax, rax%1$c%2$cmov rax, %5$d%1$c%2$ctest rax, rax%1$c%2$cjs .done%1$c%2$cpush rax%1$c%2$clea rdi, [buffer]%1$c%2$clea rsi, [src_file]%1$c%2$cmov rdx, rax%1$c%2$ccall sprintf WRT ..plt%1$c%2$cpop rax%1$c%1$c%2$clea rdi, [buffer]%1$c%2$clea rsi, [mode]%1$c%2$cpush rax%1$c%2$ccall fopen WRT ..plt%1$c%2$ctest rax, rax%1$c%2$cjz .error%1$c%2$cmov [file_ptr], rax%1$c%2$cpop rax%1$c%1$c%2$cxor rdi, rdi%1$c%2$cmov rdi, rax%1$c%2$cdec rdi%1$c%2$cpush qword rdi%1$c%2$cmov rdi, [file_ptr]%1$c%2$clea rsi, [src]%1$c%2$cmov rdx, 10%1$c%2$cmov rcx, 9%1$c%2$cmov r8, 34%1$c%2$clea r9, [src]%1$c%2$ccall fprintf WRT ..plt%1$c%2$cpop rax%1$c%2$cinc rax%1$c%1$c%2$cpush rax%1$c%2$cmov rdi, [file_ptr]%1$c%2$ccall fclose WRT ..plt%1$c%2$cpop rax%1$c%1$c%2$clea rdi, [buffer]%1$c%2$clea rsi, [exec]%1$c%2$cmov rdx, rax%1$c%2$cpush rax%1$c%2$ccall sprintf WRT ..plt%1$c%2$cpop rax%1$c%1$c%2$clea rdi, [buffer]%1$c%2$cpush rax%1$c%2$ccall system WRT ..plt%1$c%2$cpop rax%1$c%2$cjmp .done%1$c%1$c.error:%1$c%2$cmov rax, 1%1$c%2$cret%1$c%1$c.done:%1$c%2$cmov rax, 0%1$c%2$cret"
 
 section .data
 	src db C, 0
 	src_file db "Sully_%d.s", 0
 	filename db "Sully_%d", 0
 	mode db "w+", 0
-	exec db "nasm -f elf64 Sully_%1$d.s && gcc -no-pie Sully_%1$d.o -o Sully_%1$d && ./Sully_%d"
+	exec db "nasm -f elf64 Sully_%1$d.s && gcc -no-pie Sully_%1$d.o -o Sully_%1$d && rm -f Sully_%1$d.o && ./Sully_%d"
 
 section .bss
 	buffer resb 64
@@ -30,13 +30,13 @@ main:
 	lea rdi, [buffer]
 	lea rsi, [src_file]
 	mov rdx, rax
-	call sprintf
+	call sprintf WRT ..plt
 	pop rax
 
 	lea rdi, [buffer]
 	lea rsi, [mode]
 	push rax
-	call fopen
+	call fopen WRT ..plt
 	test rax, rax
 	jz .error
 	mov [file_ptr], rax
@@ -47,32 +47,32 @@ main:
 	dec rdi
 	push qword rdi
 	mov rdi, [file_ptr]
-	mov rsi, src
+	lea rsi, [src]
 	mov rdx, 10
 	mov rcx, 9
 	mov r8, 34
-	mov r9, src
-	call fprintf
+	lea r9, [src]
+	call fprintf WRT ..plt
 	pop rax
 	inc rax
 
 	push rax
 	mov rdi, [file_ptr]
-	call fclose
+	call fclose WRT ..plt
 	pop rax
 
 	lea rdi, [buffer]
 	lea rsi, [exec]
 	mov rdx, rax
 	push rax
-	call sprintf
+	call sprintf WRT ..plt
 	pop rax
 
 	lea rdi, [buffer]
 	push rax
-	call system
+	call system WRT ..plt
 	pop rax
-	ret
+	jmp .done
 
 .error:
 	mov rax, 1
